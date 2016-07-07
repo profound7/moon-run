@@ -1,0 +1,15 @@
+{
+    "name": "moon-run",
+    "license": "MIT",
+    "tags": ["utility"],
+    "description": "utility library for various things.",
+    "contributors": ["profound7"],
+    "releasenote": "Update for Haxe 3.2",
+    "version": "0.1.0",
+    "url": "https://github.com/profound7/moon-run",
+    "classPath": "src/",
+    "dependencies": 
+    {
+        "mcli": ""
+    }
+}

@@ -1,0 +1,31 @@
+{
+    "meta":
+    {
+        "name": "moon-run",
+        "license": "MIT",
+        "tags": ["utility"],
+        "description": "command line utility",
+        "contributors": ["profound7"],
+        "releasenote": "First relase",
+        "version": "0.1.0",
+        "url": "https://github.com/profound7/moon-run",
+        "classPath": "src/"
+    },
+    
+    "build":
+    {
+        "-main": "moon.run.Run",
+        "-cp": ["src"],
+        "-lib": ["mcli"],
+        "-v": false,
+        "-neko": "blah.n"
+    },
+    
+    "run":
+    {
+        "main":
+        [
+            ["hx", "build"]
+        ]
+    }
+}

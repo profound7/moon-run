@@ -1,0 +1,135 @@
+{
+    // Meta information about the project.
+    // This can also be used to generate haxelib.json when pushing to
+    // a haxelib repository. No need to add dependencies field here
+    // as it can be inferred from the build settings.
+    // If dependencies are listed here, then no inferrence is done.
+    "meta":
+    {
+        "name": "my-project",
+        "license": "2KILL",
+        "tags": ["cross", "utility"],
+        "description": "super cool project",
+        "contributors": ["somebody"],
+        "releasenote": "Update for haxe 3.2",
+        "version": "1.0.0",
+        "url": "https://github.com/somebody/my-project",
+        "classPath": "src/"
+        
+        // leave out "dependencies" and moon-run will
+        // automatically fill it in based on all the -lib
+        // arguments in the build section below
+    },
+    
+    // Build settings goes here
+    "build":
+    {
+        // These are the common settings that will be inherited
+        // in all sub-settings.
+        "-main": "Test",
+        "-cp": ["src", "test"],
+        "-lib": ["tink_core"],
+        "-v": false,
+        
+        // This is a group of settings
+        "release":
+        {
+            "-D": "hey"
+        },
+        
+        "debug":
+        {
+            "-D": "yo"
+        },
+        
+        // build with:
+        // hx build js
+        "js":
+        {
+            // This will override the parent -main setting.
+            "-main": "Foo",
+            
+            // This will concatenate with the parent -lib resulting
+            // in ["tink_core", "nodejs", "expressjs"].
+            "-lib": ["nodejs", "expressjs"],
+            "-js": "bin/foo.js"
+        },
+        
+        // hx build neko
+        "neko":
+        {
+            // This turns into a -main and the value is retrieved
+            // from myfile.hxproj.
+            "@hxproj-main": "run.hxproj",
+            
+            // Paths can have spaces, no problem.
+            "-neko": "foo/bar baz/hey.n"
+        },
+        
+        // hx build html
+        "html":
+        {
+            // When multiple targets are listed together, args
+            // --each and --next will be generated accordingly.
+            "-js": "bin/html/app.js",
+            "-as3": "bin/html/app_a.swf",
+            
+            // nested config. build with:
+            // hx build html/as3
+            "as3":
+            {
+                // This overrides the parent's -as3
+                "-as3": "bin/html/app_c.swf",
+                "-D": "abc"
+            }
+        },
+        
+        // hx build as3
+        "as3":
+        {
+            "-as3": "bin/html/app_b.swf",
+            "-D": "hi"
+        },
+        
+        // hx build whatever
+        "whatever":
+        {
+            "-js": "bin/js/app.js",
+            
+            // merges the settings in "release" and "debug"
+            // into this current object
+            "@merge": ["release", "debug"]
+        },
+        
+        // used by run example below
+        "hello":
+        {
+            "-main": "Foo",
+            "-neko": "foo/bar baz/hello.n"
+        },
+        
+        // hx build foo
+        //   same as consecutive commands:
+        //     hx build as3
+        //     hx build whatever
+        //   same as:
+        //     "foo": { "@multi": ["as3", "whatever"] }
+        "foo": ["as3", "whatever"]
+    },
+    
+    "run":
+    {
+        "greet":
+        [
+            ["println", "hello", ["%0"], "!"]
+        ],
+        
+        "main":
+        [
+            ["hx", "build", "hello"],
+            ["cd", "foo", "bar baz"],
+            ["neko", "hello", "how", "are you"],
+            ["greet", "world"]
+        ]
+    }
+}
