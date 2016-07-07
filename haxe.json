@@ -4,7 +4,7 @@
         "name": "moon-run",
         "license": "MIT",
         "tags": ["utility"],
-        "description": "command line utility",
+        "description": "Command-line utility for building and running Haxe projects with nested settings",
         "contributors": ["profound7"],
         "releasenote": "First relase",
         "version": "0.1.0",
@@ -18,7 +18,7 @@
         "-cp": ["src"],
         "-lib": ["mcli"],
         "-v": false,
-        "-neko": "blah.n"
+        "-neko": "run.n"
     },
     
     "run":
