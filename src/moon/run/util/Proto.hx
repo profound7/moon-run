@@ -322,7 +322,11 @@ abstract Proto(Struct) to Struct from Struct
     public function system(cmd:String, args:Array<Dynamic>):Int
     {
         var sargs:Array<String> = [for (a in args) Std.string(eval(a))];
-        return Sys.command(cmd, sargs);
+        var res                 = Sys.command(cmd, sargs);
+        if(res!=0){
+            throw '$res returned by $cmd $args';
+        }
+        return res;
     }
     
     public function process(cmd:String, args:Array<Dynamic>):Dynamic
