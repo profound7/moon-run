@@ -323,9 +323,6 @@ abstract Proto(Struct) to Struct from Struct
     {
         var sargs:Array<String> = [for (a in args) Std.string(eval(a))];
         var res                 = Sys.command(cmd, sargs);
-        if(res!=0){
-            throw '$res returned by $cmd $args';
-        }
         return res;
     }
     
