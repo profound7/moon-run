@@ -177,7 +177,11 @@ class RunCommand extends CommandLine
             Sys.println([for (a in args) env.eval(a)].join(" "));
             return null;
         });
-        
+        globals.syntax("exit", function(env:Proto,args:Array<Dynamic>):Dynamic
+        {
+            Sys.exit(args[0]);
+            return null;
+        });
         globals.syntax("print", function(env:Proto, args:Array<Dynamic>):Dynamic
         {
             Sys.print([for (a in args) env.eval(a)].join(" "));
