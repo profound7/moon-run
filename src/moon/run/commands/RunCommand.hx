@@ -37,7 +37,6 @@ class RunCommand extends CommandLine
     
     public function runDefault(varArgs:Array<String>):Void
     {
-        var res        = 0;
         var json:Proto = JsonTools.require(file);
         
         if (json.hasOwnField("run"))
